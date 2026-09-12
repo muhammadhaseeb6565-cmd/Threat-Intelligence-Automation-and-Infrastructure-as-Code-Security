@@ -1,0 +1,60 @@
+---
+- name: Ensure SSH root login is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: restart ssh
+
+- name: Ensure password authentication is disabled
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify: restart ssh
+
+- name: Configure UFW - default deny incoming
+  ufw:
+    direction: incoming
+    policy: deny
+
+- name: Configure UFW - default allow outgoing
+  ufw:
+    direction: outgoing
+    policy: allow
+
+- name: Configure UFW - allow SSH, HTTP, HTTPS
+  ufw:
+    rule: allow
+    port: '{{ item }}'
+    proto: tcp
+  loop:
+    - '22'
+    - '80'
+    - '443'
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+
+- name: Install fail2ban
+  apt:
+    name: fail2ban
+    state: present
+
+- name: Ensure fail2ban is running
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+
+- name: Install auditd
+  apt:
+    name: auditd
+    state: present
+
+- name: Ensure auditd is running
+  service:
+    name: auditd
+    state: started
+    enabled: yes

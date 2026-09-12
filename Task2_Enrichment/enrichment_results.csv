@@ -1,0 +1,2 @@
+indicator,risk_score,virustotal,abuseipdb,otx
+8.8.8.8,0,"{""error"": ""Missing API Key""}","{""error"": ""Missing API Key""}","{""error"": ""Missing API Key""}"

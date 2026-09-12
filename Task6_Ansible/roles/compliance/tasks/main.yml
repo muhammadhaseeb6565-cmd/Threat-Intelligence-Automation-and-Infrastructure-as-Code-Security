@@ -1,0 +1,32 @@
+---
+- name: Check if root login is disabled
+  command: grep "^PermitRootLogin no" /etc/ssh/sshd_config
+  register: root_login_check
+  failed_when: false
+  changed_when: false
+
+- name: Check if UFW is active
+  command: ufw status
+  register: ufw_status_check
+  failed_when: false
+  changed_when: false
+
+- name: Check if auditd is running
+  command: systemctl is-active auditd
+  register: auditd_check
+  failed_when: false
+  changed_when: false
+
+- name: Generate Compliance Report locally
+  delegate_to: localhost
+  copy:
+    content: |
+      COMPLIANCE CHECK REPORT
+      =======================
+      Date: {{ ansible_date_time.iso8601 }}
+      Host: {{ inventory_hostname }}
+      
+      [1] Root Login Disabled: {{ 'PASS' if root_login_check.rc == 0 else 'FAIL' }}
+      [2] Firewall (UFW) Active: {{ 'PASS' if 'Status: active' in ufw_status_check.stdout else 'FAIL' }}
+      [3] Auditd Service Running: {{ 'PASS' if auditd_check.stdout == 'active' else 'FAIL' }}
+    dest: "compliance_report.txt"

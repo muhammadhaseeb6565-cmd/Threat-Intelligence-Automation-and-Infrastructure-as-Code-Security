@@ -1,0 +1,32 @@
+{
+    "1.1.1.1": {
+        "type": "ip",
+        "first_seen": "2026-09-12T14:17:53.930686",
+        "last_seen": "2026-09-12T14:17:53.930686",
+        "confidence": 85,
+        "sources": [
+            "OSINT"
+        ],
+        "status": "active"
+    },
+    "evil.com": {
+        "type": "domain",
+        "first_seen": "2026-09-12T14:17:53.930686",
+        "last_seen": "2026-09-12T14:17:53.930686",
+        "confidence": 90,
+        "sources": [
+            "VirusTotal"
+        ],
+        "status": "active"
+    },
+    "safe.com": {
+        "type": "domain",
+        "first_seen": "2026-09-12T14:17:53.930686",
+        "last_seen": "2026-09-12T14:17:53.930686",
+        "confidence": 10,
+        "sources": [
+            "OSINT"
+        ],
+        "status": "active"
+    }
+}

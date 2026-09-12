@@ -1,0 +1,19 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades
+    state: present
+
+- name: Set timezone to UTC
+  timezone:
+    name: UTC
+
+- name: Ensure basic logging tools are installed
+  apt:
+    name: ['rsyslog', 'logrotate']
+    state: present

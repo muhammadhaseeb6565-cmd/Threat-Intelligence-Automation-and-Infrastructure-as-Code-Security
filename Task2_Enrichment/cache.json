@@ -1,0 +1,18 @@
+{
+    "8.8.8.8": {
+        "timestamp": "2026-09-12T14:17:14.505176",
+        "data": {
+            "indicator": "8.8.8.8",
+            "virustotal": {
+                "error": "Missing API Key"
+            },
+            "abuseipdb": {
+                "error": "Missing API Key"
+            },
+            "otx": {
+                "error": "Missing API Key"
+            },
+            "risk_score": 0
+        }
+    }
+}

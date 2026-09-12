@@ -1,0 +1,15 @@
+# ioc_config.yaml - Configuration for IOC Manager
+
+expiration:
+  ip: 14  # days
+  domain: 30 # days
+  hash: 365 # days
+
+confidence_thresholds:
+  blocklist: 70
+  alert: 50
+  monitor: 20
+
+siem_export_path: "blocklist.txt"
+report_export_path: "weekly_report.html"
+database_path: "ioc_database.json"
